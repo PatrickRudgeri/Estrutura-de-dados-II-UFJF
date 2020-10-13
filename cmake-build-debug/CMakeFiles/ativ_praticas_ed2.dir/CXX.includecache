@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/patrick/CLionProjects/ativ_praticas_ed2/hashing/Hash.cpp
-cmath
--
-iostream
--
-Hash.h
-/home/patrick/CLionProjects/ativ_praticas_ed2/hashing/Hash.h
-
 /home/patrick/CLionProjects/ativ_praticas_ed2/hashing/Hash.h
 
 /home/patrick/CLionProjects/ativ_praticas_ed2/hashing/main.cpp

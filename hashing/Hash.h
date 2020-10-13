@@ -1,18 +1,21 @@
 #ifndef ATIV_PRATICAS_ED2_HASH_H
 #define ATIV_PRATICAS_ED2_HASH_H
 
-struct No{
-    No(int key, int data){
+struct No {
+    No(int key, int data) {
         this->key = key;
         this->data = data;
         prox = nullptr;
     }
+
     int key;
     int data;
     No *prox;
 };
 
-enum hashType{divisao, multiplicacao, minhaHash};
+enum hashType {
+    divisao, multiplicacao, minhaHash
+};
 
 class Hash {
 public:

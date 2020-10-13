@@ -1,12 +1,6 @@
 // **************************************************************
 //  ATIVIDADE 1 
 // **************************************************************
-// Dados do Aluno
-// Nome: Patrick Rudgeri Pilato Lemes
-// Matricula: 201865075AC
-// E-mail: patrick.rudgeri@estudante.ufjf.br
-//***************************************************************
-
 
 #include <iostream>
 #include <cstdlib>     // srand, rand

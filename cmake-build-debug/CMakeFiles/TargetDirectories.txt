@@ -1,3 +1,0 @@
-/home/patrick/CLionProjects/ativ_praticas_ed2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/patrick/CLionProjects/ativ_praticas_ed2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/patrick/CLionProjects/ativ_praticas_ed2/cmake-build-debug/CMakeFiles/ativ_praticas_ed2.dir

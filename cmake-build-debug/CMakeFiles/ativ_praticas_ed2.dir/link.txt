@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/ativ_praticas_ed2.dir/hashing/main.cpp.o CMakeFiles/ativ_praticas_ed2.dir/hashing/Hash.cpp.o  -o ativ_praticas_ed2 

@@ -8,6 +8,7 @@
 #include <chrono>
 #include <algorithm>
 #include <sstream>
+#include <random>
 
 using namespace std;
 using namespace std::chrono;
@@ -40,7 +41,7 @@ void atribuir(int *a, int *b) {
 }
 
 void troca(int *a, int *b) {
-    trocas++;
+    trocas+=3;
     int aux = *a;
     *a = *b;
     *b = aux;
@@ -50,12 +51,16 @@ void troca(int *a, int *b) {
 
 // Criar uma rotina para gerar um vetor de tamanho N com numeros 
 // aleatórios
-void geraVetorAleatorio(int *vet, int n, unsigned int seed) {
+void geraVetorAleatorio(int *vet, int n, int min, int max, unsigned int seed=0) {
     int x;
-    srand(seed);
+    random_device myRandomDevice;
+    if (seed == 0)
+        seed = myRandomDevice();
+    default_random_engine myRandomEngine(seed);
+
     for (int i = 0; i < n; i++) {
-        x = rand() % (n * 10) + 1;
-        vet[i] = x;
+        uniform_int_distribution<int> myUnifIntDist(1, 10);
+        vet[i] = myUnifIntDist(myRandomEngine);
     }
 }
 
@@ -189,8 +194,7 @@ int main() {
         cout << "\n\nn" << i + 1 << ": ";
         cin >> n;
         vet = new int[(int) n];
-        seed = time(NULL);
-        geraVetorAleatorio(vet, n, seed);
+        geraVetorAleatorio(vet, n, 1, 10);
 
         insertionSort(vet, n);
         shellsort(vet, n);

@@ -3,6 +3,8 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <excludeRoots>
+      <file path="$PROJECT_DIR$/hashing_1" />
+      <file path="$PROJECT_DIR$/hashing_2" />
       <file path="$PROJECT_DIR$/ordenacao" />
     </excludeRoots>
   </component>

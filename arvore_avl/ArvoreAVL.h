@@ -27,7 +27,9 @@ private:
     NoAVL *libera(NoAVL *p);
 
 public:
-    ArvoreAVL();
+    ArvoreAVL() = default;
+
+    explicit ArvoreAVL(bool balanceamento = false);
 
     ~ArvoreAVL();
 
@@ -43,8 +45,6 @@ public:
     void setBalanceamento(bool b);
 
     int getAlturaArv();
-
-    void aplicarRotacao(NoAVL *pAvl);
 };
 
 

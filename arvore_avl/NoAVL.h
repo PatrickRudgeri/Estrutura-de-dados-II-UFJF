@@ -14,6 +14,9 @@ public:
     NoAVL() {
         fator = 0;
         altura = 0;
+        info = -1;
+        esq = nullptr;
+        dir = nullptr;
     };
 
     NoAVL(int val, NoAVL *esq, NoAVL *dir) {

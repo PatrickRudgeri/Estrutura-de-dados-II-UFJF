@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    ArvoreAVL arv;
+    ArvoreAVL arv(true);
 
     cout << "Criando AVL..." << endl;
 //    arv.insere(15);
@@ -21,16 +21,18 @@ int main() {
 //    arv.insere(17);
 //    arv.insere(19);
 
-    arv.insere(57);
+    arv.insere(30);
+    arv.insere(40);
     arv.insere(50);
-    arv.insere(38);
-    arv.insere(18);
+//    arv.insere(55);
+//    arv.insere(35);
+//    arv.insere(33);
     cout << endl << "---" << endl;
     arv.imprime();
     cout << endl;
 
 
-    cout << "Busca o valor 20: " << (arv.busca(20) ? "Sim" : "Não") << endl;
+    cout << "Busca o valor 35: " << (arv.busca(35) ? "Sim" : "Não") << endl;
     cout << "Busca o valor  5: " << (arv.busca(5) ? "Sim" : "Não") << endl;
     cout << endl;
     cout << "Altura da árvore: " << arv.getAlturaArv() << endl;

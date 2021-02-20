@@ -1,53 +1,107 @@
 #include <iostream>
+#include <random>
+#include <chrono>
 #include "ArvoreAVL.h"
 
 using namespace std;
+using namespace std::chrono;
+
+// MACROS
+#define TIME_POINT high_resolution_clock::time_point
+#define NOW high_resolution_clock::now
+#define DURATION_CAST duration_cast<duration<double>>
+
+struct Args {
+    ArvoreAVL *arv;
+    int N, M, *vetInfos, *vetIndex;
+};
+
+void gerarNumAleatorios(int *&vet, int N, int maxRange) {
+    vet = new int[N];
+    random_device randomDevice;
+    unsigned seed = randomDevice();
+
+    default_random_engine randomEngine(seed);
+    uniform_int_distribution<int> unifDist(0, maxRange);
+
+    for (int i = 0; i < N; i++) {
+        vet[i] = unifDist(randomEngine);
+    }
+}
+
+void testeBuscasNaArvore(Args *pArgs) {
+    int idx;
+    for (int i = 0; i < pArgs->M; i++) {
+        idx = pArgs->vetIndex[i];
+        pArgs->arv->busca(pArgs->vetInfos[idx]);
+    }
+}
+
+void testesArvores(Args *pArgs) {
+    string arvTipo;
+
+    arvTipo = pArgs->arv->isAvl() ? "AVL" : "ABB";
+
+    cout << "Criando " + arvTipo + "..." << endl;
+
+    for (int i = 0; i < pArgs->N; i++) {
+        pArgs->arv->inserir(pArgs->vetInfos[i]);
+    }
+
+    cout << "Executando buscas na " + arvTipo + "..." << endl;
+
+    TIME_POINT inicio = NOW();
+    testeBuscasNaArvore(pArgs);
+
+    cout << "Tempo de execucação:" << DURATION_CAST(NOW() - inicio).count() << " s" << endl;
+    cout << "Altura : " << pArgs->arv->getAlturaArv() << endl;
+    cout << "Comparações de chaves (buscas): " << pArgs->arv->getContComp() << endl;
+
+}
 
 int main() {
-    ArvoreAVL arv(true);
+    Args args{};
+    cout << "Digite o valor de M (buscas) e o valor de N (qt de nós): "; //no formato: M N
+    cin >> args.M >> args.N;
 
-    cout << "Criando AVL..." << endl;
-//    arv.insere(15);
-//    arv.insere(20);
-//    arv.insere(7);
-//    arv.insere(11);
-//    arv.insere(18);
-//    arv.insere(24);
-//    arv.insere(6);
-//    arv.insere(8);
-//    arv.insere(10);
-//    arv.insere(5);
-//    arv.insere(12);
-//    arv.insere(17);
-//    arv.insere(19);
+    gerarNumAleatorios(args.vetInfos, args.N, args.N * 10);
+    gerarNumAleatorios(args.vetIndex, args.M, args.N - 1); //indices aleatórios para buscas
 
-    arv.insere(30);
-    arv.insere(40);
-    arv.insere(50);
-//    arv.insere(55);
-//    arv.insere(35);
-//    arv.insere(33);
-    cout << endl << "---" << endl;
-    arv.imprime();
-    cout << endl;
+    //---- Dados aleatórios ----/
+    //---- testes ABB
+    cout << "*** Dados aleatórios ***\n\n";
+    cout << "ABB:" << endl;
+    args.arv = new ArvoreAVL();
+    testesArvores(&args);
+    delete args.arv;
 
+    //---- testes AVL
+    cout << "\nAVL:" << endl;
+    args.arv = new ArvoreAVL(true);
+    testesArvores(&args);
+    delete args.arv;
 
-    cout << "Busca o valor 35: " << (arv.busca(35) ? "Sim" : "Não") << endl;
-    cout << "Busca o valor  5: " << (arv.busca(5) ? "Sim" : "Não") << endl;
-    cout << endl;
-    cout << "Altura da árvore: " << arv.getAlturaArv() << endl;
+    cout << "***********************\n\n";
 
-//    cout << "Removendo os valores 24, 6, 7, 12, 18, 5." << endl;
-//    arv.remove(24);
-//    arv.remove(6);
-//    arv.remove(7);
-//    arv.remove(12);
-//    arv.remove(18);
-//    arv.remove(5);
-//    cout << endl;
-//
-//    cout << "Arvore AVL final:" << endl;
-//    arv.imprime();
+    //---- Dados ordenados ----/
+    for (int i = 0; i < args.N; i++) {
+        args.vetInfos[i] = i;
+    }
+    //---- testes ABB
+    cout << "*** Dados Ordenados ***\n\n";
+    cout << "ABB:" << endl;
+    args.arv = new ArvoreAVL();
+    testesArvores(&args);
+    delete args.arv;
+
+    //---- testes AVL
+    cout << "\nAVL:" << endl;
+    args.arv = new ArvoreAVL(true);
+    testesArvores(&args);
+    delete args.arv;
+
+    delete[] args.vetInfos;
+    delete[] args.vetIndex;
 
     return 0;
 }

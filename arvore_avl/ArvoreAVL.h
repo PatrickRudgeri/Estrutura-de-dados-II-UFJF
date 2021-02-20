@@ -9,6 +9,7 @@ private:
     NoAVL *raiz;
     bool balanceamento;
     bool incAltura;
+    int contComp;
 
     bool auxBusca(NoAVL *p, int val);
 
@@ -26,17 +27,27 @@ private:
 
     NoAVL *libera(NoAVL *p);
 
-public:
-    ArvoreAVL() = default;
+    //AVL methods
+    NoAVL *aplicarRotacao(NoAVL *p);
+    void updateFactor(NoAVL *p);
+    void updateAltura(NoAVL *p);
+    void updateNoh(NoAVL *p, NoAVL *r);
+    NoAVL *rotacaoSimplesEsq(NoAVL *p);
+    NoAVL *rotacaoSimplesDir(NoAVL *p);
 
-    explicit ArvoreAVL(bool balanceamento = false);
+    bool incContComp(bool expression=false); //apenas um "wrapper" para incrementar contador
+
+public:
+    ArvoreAVL();
+
+    explicit ArvoreAVL(bool balanceamento);
 
     ~ArvoreAVL();
 
     bool vazia(); // verifica se a árvore está vazia
     bool busca(int val);
 
-    void insere(int val);
+    void inserir(int val);
 
     void remove(int val);
 
@@ -45,6 +56,10 @@ public:
     void setBalanceamento(bool b);
 
     int getAlturaArv();
+
+    int getContComp() const;
+
+    bool isAvl() const;
 };
 
 

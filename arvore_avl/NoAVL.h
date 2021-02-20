@@ -9,7 +9,6 @@ private:
     NoAVL *dir;
     int fator;
     int altura;
-//    NoAVL *pai; //fixme: retirar esse code
 public:
     NoAVL() {
         fator = 0;
@@ -39,8 +38,6 @@ public:
 
     void setAltura(int h) { altura = h; }
 
-//    void setPai(NoAVL *p) { pai = p; } //fixme: retirar esse code
-
     NoAVL *getEsq() { return esq; }
 
     int getInfo() { return info; }
@@ -50,8 +47,6 @@ public:
     int getFator() { return fator; }
 
     int getAltura() { return altura; }
-
-//    NoAVL *getPai() { return pai; } //fixme: retirar esse code
 };
 
 
